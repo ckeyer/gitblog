@@ -1,4 +1,4 @@
-FROM php:5.6
+FROM php:5.6-fpm
 
 MAINTAINER ckeyer <me@ckeyer.com>
 
@@ -52,5 +52,5 @@ RUN echo 'server {\n \
 }' > /etc/nginx/nginx.conf
 
 EXPOSE 80 443
-
+ENTRYPOINT ["php-fpm"]
 CMD ["nginx", "-g", "daemon off;"]

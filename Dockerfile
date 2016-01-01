@@ -50,5 +50,5 @@ RUN chmod -R 755 ./* && \
 	mv blog /blog && ln -s /blog blog
 
 EXPOSE 80 443
-CMD ["php-fpm"]
+ENTRYPOINT php-fpm
 CMD ["nginx", "-g", "daemon off;"]

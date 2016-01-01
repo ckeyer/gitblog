@@ -11,8 +11,8 @@ RUN apt-get update && \
 	apt-get update && \
 	apt-get upgrade -y && \
 	chmod -R 755 ./* && \
-	mv blog /blog && ln -s /blog blog && \
-	echo 'server {\n \
+	mv blog /blog && ln -s /blog blog
+RUN echo 'server {\n \
         listen       80;\n \
         server_name  jockchou.gitblog.cn;\n \
         root         /data/vhosts/jockchou.gitblog.cn;\n \

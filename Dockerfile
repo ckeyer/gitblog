@@ -1,6 +1,7 @@
 FROM php:5.5-apache
 
 MAINTAINER ckeyer <me@ckeyer.com>
+ENV PHP_EXTRA_CONFIGURE_ARGS --enable-mbstring=cn
 
 COPY . /var/www/html/
 

@@ -4,7 +4,7 @@ MAINTAINER ckeyer <me@ckeyer.com>
 
 COPY . /var/www/html/
 
-RUN echo 'LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so' > /etc/apache2/mods-enabled/rewrite.load
+RUN echo 'LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so' > /etc/apache2/mods-enabled/rewrite.load \
 	&& echo 'RewriteEngine on' >> ./.htaccess \
 	&& echo 'RewriteCond %{REQUEST_FILENAME} !-f' >> ./.htaccess \
 	&& echo 'RewriteCond %{REQUEST_FILENAME} !-d' >> ./.htaccess \

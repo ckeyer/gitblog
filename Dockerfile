@@ -52,5 +52,5 @@ RUN echo 'server {\n \
 }' > /etc/nginx/nginx.conf
 
 EXPOSE 80 443
-ENTRYPOINT ["php-fpm"]
+CMD ["php-fpm"]
 CMD ["nginx", "-g", "daemon off;"]

@@ -51,4 +51,4 @@ RUN chmod -R 755 ./* && \
 
 EXPOSE 80 443
 ENTRYPOINT php-fpm
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -10,9 +10,9 @@ RUN apt-get update && \
 	add-apt-repository ppa:nginx/$nginx && \
 	apt-get update && \
 	apt-get upgrade -y && \
-	&& chmod -R 755 ./* \
-	&& mv blog /blog && ln -s /blog blog \
-	&& echo 'server {\
+	chmod -R 755 ./* && \
+	mv blog /blog && ln -s /blog blog && \
+	echo 'server {\
         listen       80;\
         server_name  jockchou.gitblog.cn;\
         root         /data/vhosts/jockchou.gitblog.cn;\

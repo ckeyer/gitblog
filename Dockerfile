@@ -12,35 +12,35 @@ RUN apt-get update && \
 	apt-get upgrade -y && \
 	chmod -R 755 ./* && \
 	mv blog /blog && ln -s /blog blog && \
-	echo 'server {\
-        listen       80;\
-        server_name  jockchou.gitblog.cn;\
-        root         /data/vhosts/jockchou.gitblog.cn;\
-        index        index.html index.htm index.php;\
-\
-        location ~ \\.(jpg|png|gif|js|css|swf|flv|ico)$ {\
-                 expires 12h;\
-        }\
-\
-        location / {\
-                if (!-e $request_filename) {\
-                    rewrite ^(.*)$ /index.php?$1 last ;\
-                    break;\
-                }\
-        }\
-\
-        location ~* ^/(doc|logs|app|sys)/ {\
-                return 403;\
-        }\
-\
-        location ~ .*\\.(php|php5)?$\
-        {\
-                fastcgi_connect_timeout 300;\
-                fastcgi_send_timeout 300;\
-                fastcgi_read_timeout 300;\
-                fastcgi_pass   127.0.0.1:9000;\
-                fastcgi_index  index.php;\
-                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;\
-                include        fastcgi_params;\
-        }\
+	echo 'server {\n \
+        listen       80;\n \
+        server_name  jockchou.gitblog.cn;\n \
+        root         /data/vhosts/jockchou.gitblog.cn;\n \
+        index        index.html index.htm index.php;\n \
+\n \
+        location ~ \\.(jpg|png|gif|js|css|swf|flv|ico)$ {\n \
+                 expires 12h;\n \
+        }\n \
+\n \
+        location / {\n \
+                if (!-e $request_filename) {\n \
+                    rewrite ^(.*)$ /index.php?$1 last ;\n \
+                    break;\n \
+                }\n \
+        }\n \
+\n \
+        location ~* ^/(doc|logs|app|sys)/ {\n \
+                return 403;\n \
+        }\n \
+\n \
+        location ~ .*\\.(php|php5)?$\n \
+        {\n \
+                fastcgi_connect_timeout 300;\n \
+                fastcgi_send_timeout 300;\n \
+                fastcgi_read_timeout 300;\n \
+                fastcgi_pass   127.0.0.1:9000;\n \
+                fastcgi_index  index.php;\n \
+                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;\n \
+                include        fastcgi_params;\n \
+        }\n \
 }' > /etc/nginx/nginx.conf

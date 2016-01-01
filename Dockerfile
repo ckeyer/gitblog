@@ -4,14 +4,20 @@ MAINTAINER ckeyer <me@ckeyer.com>
 
 COPY . /var/www/html/
 
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
+
+ENV NGINX_VERSION 1.9.9-1~jessie
+
 RUN apt-get update && \
-	apt-get install -y software-properties-common && \
-	nginx=stable && \
-	add-apt-repository ppa:nginx/$nginx && \
-	apt-get update && \
-	apt-get upgrade -y && \
-	chmod -R 755 ./* && \
+    apt-get install -y ca-certificates nginx=${NGINX_VERSION} && \
+    rm -rf /var/lib/apt/lists/*
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+RUN chmod -R 755 ./* && \
 	mv blog /blog && ln -s /blog blog
+
 RUN echo 'server {\n \
         listen       80;\n \
         server_name  jockchou.gitblog.cn;\n \
@@ -44,3 +50,7 @@ RUN echo 'server {\n \
                 include        fastcgi_params;\n \
         }\n \
 }' > /etc/nginx/nginx.conf
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]

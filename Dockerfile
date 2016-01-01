@@ -44,7 +44,7 @@ RUN echo 'server {\n \
                 fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;\n \
                 include        fastcgi_params;\n \
         }\n \
-}' > /etc/nginx/conf.d/php.conf
+}' > /etc/nginx/conf.d/default.conf
 
 COPY . /var/www/html/
 RUN chmod -R 755 ./* && \

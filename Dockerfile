@@ -48,7 +48,7 @@ RUN echo 'server {\n \
 COPY . /var/www/html/
 RUN chmod -R 755 ./* && \
 	mv blog /blog && ln -s /blog blog
-
-EXPOSE 80 443
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /var/www/html/
+EXPOSE 80 443 9000
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
 ENTRYPOINT php-fpm

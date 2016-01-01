@@ -4,7 +4,12 @@ MAINTAINER ckeyer <me@ckeyer.com>
 
 COPY . /var/www/html/
 
-RUN apt-get update && apt-get install nginx \
+RUN apt-get update && \
+	apt-get install -y software-properties-common && \
+	nginx=stable && \
+	add-apt-repository ppa:nginx/$nginx && \
+	apt-get update && \
+	apt-get upgrade -y && \
 	&& chmod -R 755 ./* \
 	&& mv blog /blog && ln -s /blog blog \
 	&& echo 'server {\

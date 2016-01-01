@@ -14,9 +14,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 RUN echo 'server {\n \
-        listen       80;\n \
-        server_name  jockchou.gitblog.cn;\n \
-        root         /data/vhosts/jockchou.gitblog.cn;\n \
+        listen       80 default;\n \
+        root         /var/www/html/;\n \
         index        index.html index.htm index.php;\n \
 \n \
         location ~ \\.(jpg|png|gif|js|css|swf|flv|ico)$ {\n \

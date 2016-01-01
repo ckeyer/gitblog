@@ -1,4 +1,4 @@
-FROM php:7.0-apache
+FROM php:5.5-apache
 
 MAINTAINER ckeyer <me@ckeyer.com>
 

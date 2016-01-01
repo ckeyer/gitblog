@@ -2,8 +2,6 @@ FROM php:5.6-fpm
 
 MAINTAINER ckeyer <me@ckeyer.com>
 
-COPY . /var/www/html/
-
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
 RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
 
@@ -50,6 +48,8 @@ RUN echo 'server {\n \
                 include        fastcgi_params;\n \
         }\n \
 }' > /etc/nginx/nginx.conf
+
+COPY . /var/www/html/
 
 EXPOSE 80 443
 CMD ["php-fpm"]

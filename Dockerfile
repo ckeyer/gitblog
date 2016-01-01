@@ -12,9 +12,3 @@ RUN echo 'LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so' > /
 	&& echo 'RewriteRule ^(.*)$ /index.php/$1 [L]' >> ./.htaccess \
 	&& mkdir -p app/cache \
 	&& mv blog /blog && ln -s /blog blog
-
-docker-php-ext-enable rewrite_module /usr/lib/apache2/modules/mod_rewrite.so
-
-docker-php-ext-configure AllowOverride All
-
-docker-php-ext-install rewrite_module /usr/lib/apache2/modules/mod_rewrite.so

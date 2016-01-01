@@ -13,9 +13,6 @@ RUN apt-get update && \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN chmod -R 755 ./* && \
-	mv blog /blog && ln -s /blog blog
-
 RUN echo 'server {\n \
         listen       80;\n \
         server_name  jockchou.gitblog.cn;\n \
@@ -50,6 +47,8 @@ RUN echo 'server {\n \
 }' > /etc/nginx/conf.d/php.conf
 
 COPY . /var/www/html/
+RUN chmod -R 755 ./* && \
+	mv blog /blog && ln -s /blog blog
 
 EXPOSE 80 443
 CMD ["php-fpm"]
